@@ -13,6 +13,7 @@ public class Game {
 
 
 
+
     public void run(){
         System.out.println("How many people will be playing?(1-4)");
         int players = scan.nextInt();
@@ -24,7 +25,9 @@ public class Game {
         System.out.println("How many rounds would you like to play?(5-30)");
         int rounds = scan.nextInt();
         for(int i = 0; i < rounds; i++){
-            for(int j = 1; j <= players; j++){
+            for(int j = 0; j < players; j++){
+                Store store = new Store();
+
 
 
             }
