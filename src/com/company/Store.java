@@ -15,36 +15,14 @@ public class Store {
             p = price;
         }
 
-        private ArrayList<Animal> animalList = new ArrayList<>();
-        Scanner scan = new Scanner(System.in);
 
 
-
-public void whatAnimalToBuy() {
-
-
-    System.out.println("What animal do you want to buy?");
-    int buymenu = scan.nextInt();
-    System.out.println("How many animals would you like to buy?");
-    int buyAmount = scan.nextInt();
-    switch (buymenu) {
-        case 1:
-            for (int i = 0; i < buyAmount; i++) {
-                System.out.println("What Gender do you want to buy?");
-                String gender = scan.nextLine();
-                System.out.println("Give the animal a name:");
-                String name = scan.nextLine();
-                Tiger tiger = new Tiger(name, 100, gender);
-                animalList.add(tiger);
-            }
-    }
-
-
-    }
-        public void updateMoney(){
 
 
 }
+ public int getCostOfAnimal(String animal){
+        return animalShop.valueOf(animal.toUpperCase()).p;
+ }
 
 }
-}
+
