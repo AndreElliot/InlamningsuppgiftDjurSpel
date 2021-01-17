@@ -5,7 +5,7 @@ enum Gender{
     FEMALE
 }
 
-public class Animal {
+abstract class Animal {
 
     protected String name;
     protected int health;

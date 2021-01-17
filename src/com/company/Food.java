@@ -1,4 +1,4 @@
 package com.company;
 
-public class Food {
+abstract class Food {
 }
