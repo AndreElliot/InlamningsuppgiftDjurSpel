@@ -1,27 +1,24 @@
 package com.company;
-import java.util.Scanner;
-import java.util.ArrayList;
 
 
 
 
 public class Store {
-    enum animalShop{
+    enum animalAndFoodShop{
         TIGER(500),
-        CHICKEN(100);
+        CHICKEN(100),
+        MEAT(50),
+        GRAIN(50);
+
 
         int p;
-        animalShop(int price){
+        animalAndFoodShop(int price){
             p = price;
         }
 
-
-
-
-
 }
- public int getCostOfAnimal(String animal){
-        return animalShop.valueOf(animal.toUpperCase()).p;
+ public int getCostOfAnimalOrFood(String animal){
+        return animalAndFoodShop.valueOf(animal.toUpperCase()).p;
  }
 
 }

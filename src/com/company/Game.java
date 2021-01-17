@@ -36,7 +36,6 @@ public class Game {
 
     public void whatAnimalToBuy(Player player) {
 
-
         while(true){
         System.out.println("Choose the animal you want to buy or type in \"-\" to finish your turn");
         String buymenu = scan.nextLine().toLowerCase();
@@ -77,14 +76,12 @@ public class Game {
                 break;
         }
         }
-
-
     }
     public void updateWallet(String animal, Player player){
-        player.setmoney(player.getMoney() - store.getCostOfAnimal(animal));
+        player.setmoney(player.getMoney() - store.getCostOfAnimalOrFood(animal));
 }
     public boolean checkIfPlayerHasEnoughMoney(String animal, int buyamount, Player player){
-        if(player.getMoney() >= buyamount* store.getCostOfAnimal(animal)){
+        if(player.getMoney() >= buyamount* store.getCostOfAnimalOrFood(animal)){
             return true;
         }
         return false;
