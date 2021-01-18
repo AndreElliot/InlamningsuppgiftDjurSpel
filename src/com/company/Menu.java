@@ -3,6 +3,7 @@ package com.company;
 public class Menu {
 
     public void mainMenu(){
+        System.out.println();
         System.out.println("1. Buy Animals");
         System.out.println("2. Buy food");
         System.out.println("3. Feed your animals");
@@ -16,7 +17,7 @@ public class Menu {
     }
     public void foodMenu(){
         System.out.println("------------ Food for sale ------------");
-        System.out.println("         Meat    |   $50 (price per kg)");
-        System.out.println("         Grain   |   $50 (price per kg)");
+        System.out.println("         Beef   |   $50 (price per kg)");
+        System.out.println("         Corn   |   $50 (price per kg)");
     }
 }

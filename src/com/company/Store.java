@@ -1,25 +1,25 @@
 package com.company;
 
 
-
-
 public class Store {
-    enum animalAndFoodShop{
+    enum animalAndFoodShop {
         TIGER(500),
         CHICKEN(100),
-        MEAT(50),
-        GRAIN(50);
+        BEEF(50),
+        CORN(50);
 
 
         int p;
-        animalAndFoodShop(int price){
+
+        animalAndFoodShop(int price) {
             p = price;
         }
 
-}
- public int getCostOfAnimalOrFood(String animal){
+    }
+
+    public int getCostOfAnimalOrFood(String animal) {
         return animalAndFoodShop.valueOf(animal.toUpperCase()).p;
- }
+    }
 
 }
 
