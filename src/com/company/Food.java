@@ -16,4 +16,6 @@ abstract class Food {
 
     public abstract FoodType getFoodType(); //not tested yet
 
+    public abstract String getFoodName();
+
 }

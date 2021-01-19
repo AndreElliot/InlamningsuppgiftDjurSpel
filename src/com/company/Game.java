@@ -38,8 +38,10 @@ public class Game {
                     case "2":
                         menu.foodMenu();
                         whatFoodToBuy(playerList.get(j));
+                        break;
                     case "3":
                         feedAnimal(playerList.get(j));
+                        break;
                 }
                 playerList.get(j).decraseAllAnimalsHealth();
 
@@ -121,39 +123,49 @@ public class Game {
                         player.addFood(corn);
                         updateWallet("corn", player);
                     }
+                    break;
             }
         }
     }
 
     public void feedAnimal(Player player) {   //Not ready yet!
-        //while (true) {
-            System.out.println("Choose what animal you want to feed by typing in the name of it.");
+        while (true) {
+            System.out.println("Choose what animal you want to feed by typing in the name of it. or type in \"-\" to finish your turn");
             String animalName = scan.nextLine();
+            Animal animaltemp = player.getAnimal(animalName);
+            if (animalName.equals("-")) {
+                break;
+            }
             System.out.println("What type of food would you like to give the animal?");
             String foodName = scan.nextLine();
-            if(player.getAnimal(animalName).foodType == player.getFoodType(foodName)){
-                System.out.println("its working");
+            if ((animaltemp.getAnimalFoodType()) == (player.getFoodType(foodName))) {
+                System.out.println("How many KG " + foodName + " would you like to give the animal (+10hp per kg)?");
+                int amountFoodToGive = scan.nextInt();
+                scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
+                if (amountFoodToGive <= player.howMuchFood(foodName)) {
+                    for (int i = 0; i < amountFoodToGive; i++) {
+                        animaltemp.increaseHealthBy10();
+                        player.removeFood(foodName);
+                        System.out.println(animalName + " is eating his " + foodName + "... nam nam.. Health: " + animaltemp.health + "(+10)");
+                    }
+
+                } else {
+                    System.out.println("You do not have enough " + foodName + " to feed your animal this much food.\n");
+                }
 
             }
-            else{
-                System.out.println("not working..");
-            }
-
-
-
-
-
         }
 
-    
+    }
+
 
     public void showPlayerInventory(Player player) {
         System.out.print("Player: " + player.getName());
         System.out.println("     |     Money: " + player.getMoney());
         System.out.println("------------------------------------------");
         System.out.print("Food owned: ");
-        player.howMuchBeef();
-        player.howMuchCorn();
+        System.out.println("Beef: " + player.howMuchFood("beef") + "kg");
+        System.out.println("Corn: " + player.howMuchFood("corn") + "kg");
         System.out.println("------------------------------------------");
         player.animalsOwned();
 

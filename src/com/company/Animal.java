@@ -44,5 +44,7 @@ abstract class Animal {
 
     public abstract void printOutValues();
 
+    public abstract FoodType getAnimalFoodType();
+
 
 }

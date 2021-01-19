@@ -12,4 +12,9 @@ public class Tiger extends Animal {
     public void printOutValues(){
         System.out.println("Tiger | Name: " + name + " | Gender:" + gender.toString().toLowerCase() + " | Health:" + health  + " | Last rounds health: " + healthLastRound + "(" + (health-healthLastRound) + ")");
     }
+
+    @Override
+    public FoodType getAnimalFoodType() {
+        return FoodType.MEAT;
+    }
 }

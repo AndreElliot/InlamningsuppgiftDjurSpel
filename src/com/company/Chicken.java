@@ -11,4 +11,9 @@ public class Chicken extends Animal {
         System.out.println("Chicken | Name: " + name + " | Gender:" + gender.toString().toLowerCase() +" | Health:" + health  + " | Last rounds health: " + healthLastRound + "(" +(health-healthLastRound) + ")");
 
     }
+
+    @Override
+    public FoodType getAnimalFoodType() {
+        return FoodType.VEGETERIAN;
+    }
 }
