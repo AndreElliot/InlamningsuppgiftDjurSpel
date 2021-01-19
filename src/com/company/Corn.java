@@ -7,10 +7,7 @@ public class Corn extends Food {
     }
 
     @Override
-    public FoodType getFoodType(String foodType) {
-        if (foodType.equalsIgnoreCase("corn")) {
-            return FoodType.VEGETERIAN;
-        }
+    public FoodType getFoodType() {
         return null;
     }
 }

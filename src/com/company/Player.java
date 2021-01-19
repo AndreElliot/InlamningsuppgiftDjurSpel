@@ -97,6 +97,15 @@ public class Player {
         }
         return animal;
     }
+    public FoodType getFoodType(String foodName){
+        FoodType foodtype = null;
+        for(Food allfood : foodList){
+            if(allfood.toString().equalsIgnoreCase(foodName)){
+                foodtype = allfood.getFoodType();
+            }
+        }
+        return foodtype;
+    }
 
 }
 

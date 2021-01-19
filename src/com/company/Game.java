@@ -38,6 +38,8 @@ public class Game {
                     case "2":
                         menu.foodMenu();
                         whatFoodToBuy(playerList.get(j));
+                    case "3":
+                        feedAnimal(playerList.get(j));
                 }
                 playerList.get(j).decraseAllAnimalsHealth();
 
@@ -124,21 +126,26 @@ public class Game {
     }
 
     public void feedAnimal(Player player) {   //Not ready yet!
-        while (true) {
+        //while (true) {
             System.out.println("Choose what animal you want to feed by typing in the name of it.");
             String animalName = scan.nextLine();
             System.out.println("What type of food would you like to give the animal?");
             String foodName = scan.nextLine();
-            if(player.getAnimal(animalName).foodType.equals
+            if(player.getAnimal(animalName).foodType == player.getFoodType(foodName)){
+                System.out.println("its working");
 
             }
+            else{
+                System.out.println("not working..");
+            }
+
 
 
 
 
         }
 
-    }
+    
 
     public void showPlayerInventory(Player player) {
         System.out.print("Player: " + player.getName());

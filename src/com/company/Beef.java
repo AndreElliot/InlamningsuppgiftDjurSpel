@@ -8,10 +8,8 @@ public class Beef extends Food{
     }
 
     @Override
-    public FoodType getFoodType(String foodType) {
-        if (foodType.equalsIgnoreCase("Beef")) {
-            return FoodType.MEAT;
-        }
-        return null;
+    public FoodType getFoodType() {
+
+        return FoodType.MEAT;
     }
 }
