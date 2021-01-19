@@ -28,12 +28,19 @@ abstract class Animal {
         int n = 10 + rand.nextInt(21);
         healthLastRound = health;
         this.health -= n;
-
+    }
+    public void increaseHealthBy10(){
+        this.health += 10;
     }
 
     public int getHealthLastRound(){
         return healthLastRound;
     }
+
+    public String getName(){
+        return name;
+    }
+
 
     public abstract void printOutValues();
 

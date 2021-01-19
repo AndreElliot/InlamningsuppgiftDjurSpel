@@ -30,6 +30,22 @@ public class Player {
 
     }
 
+    public void removeFood(String foodType) {  //not tested yet
+
+        Food foodToRemove = null;
+        for (Food food : foodList) {
+            if (food instanceof Beef) {
+                foodToRemove = food;
+            } else if (food instanceof Corn) {
+                foodToRemove = food;
+            }
+
+
+        }
+        foodList.remove(foodToRemove);
+    }
+
+
     public void addAnimal(Animal animal) {
         animalList.add(animal);
     }
@@ -39,7 +55,7 @@ public class Player {
     }
 
     public void animalsOwned() {
-        System.out.println("Animals owned: ");
+        System.out.println("            Animals owned: ");
         for (Animal animals : animalList) {
             animals.printOutValues();
         }
@@ -50,24 +66,38 @@ public class Player {
             animal.decreaseHealth();
         }
     }
-    public void howMuchBeef(){
+
+    public void howMuchBeef() {
         int beefCount = 0;
-        for(Food food : foodList){
-            if(food instanceof Beef){
+        for (Food food : foodList) {
+            if (food instanceof Beef) {
                 beefCount++;
             }
         }
         System.out.print("Beef: " + beefCount + "kg | ");
     }
-    public void howMuchCorn(){
+
+    public void howMuchCorn() {
         int CornCount = 0;
-        for(Food food : foodList){
-            if(food instanceof Corn){
+        for (Food food : foodList) {
+            if (food instanceof Corn) {
                 CornCount++;
             }
         }
         System.out.println("Corn: " + CornCount + "kg");
     }
+
+    public Animal getAnimal(String animalName) {
+        Animal animal = null;
+        for (Animal everyAnimal : animalList) {
+            if (everyAnimal.getName().equalsIgnoreCase(animalName)) {
+                animal = everyAnimal;
+
+            }
+        }
+        return animal;
+    }
+
 }
 
 

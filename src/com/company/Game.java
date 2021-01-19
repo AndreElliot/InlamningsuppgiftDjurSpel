@@ -123,9 +123,19 @@ public class Game {
         }
     }
 
-    public void feedAnimal() {   //Not ready yet!
+    public void feedAnimal(Player player) {   //Not ready yet!
         while (true) {
-            System.out.println("Choose what animal you want to feed.");
+            System.out.println("Choose what animal you want to feed by typing in the name of it.");
+            String animalName = scan.nextLine();
+            System.out.println("What type of food would you like to give the animal?");
+            String foodName = scan.nextLine();
+            if(player.getAnimal(animalName).foodType.equals
+
+            }
+
+
+
+
         }
 
     }
@@ -133,10 +143,11 @@ public class Game {
     public void showPlayerInventory(Player player) {
         System.out.print("Player: " + player.getName());
         System.out.println("     |     Money: " + player.getMoney());
-        System.out.println();
-        System.out.println("Food owned: ");
+        System.out.println("------------------------------------------");
+        System.out.print("Food owned: ");
         player.howMuchBeef();
         player.howMuchCorn();
+        System.out.println("------------------------------------------");
         player.animalsOwned();
 
     }

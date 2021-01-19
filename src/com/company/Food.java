@@ -14,6 +14,6 @@ abstract class Food {
 
     }
 
-
+    public abstract FoodType getFoodType(String foodType); //not tested yet
 
 }
