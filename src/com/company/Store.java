@@ -1,4 +1,5 @@
 package com.company;
+
 import java.util.Scanner;
 
 
@@ -17,6 +18,7 @@ public class Store {
         }
 
     }
+
     Scanner scan = new Scanner(System.in);
 
     public int getCostOfAnimalOrFood(String animal) {
@@ -49,7 +51,7 @@ public class Store {
                         String name = scan.nextLine();
                         Tiger tiger = new Tiger(name, 100, gender);
                         player.addAnimal(tiger);
-                        player.updateWallet("tiger", player);
+                        player.updateWalletAfterBuying("tiger", player);
                     }
                     break;
                 case "chicken":
@@ -60,12 +62,13 @@ public class Store {
                         String name = scan.nextLine();
                         Chicken chicken = new Chicken(name, 100, gender);
                         player.addAnimal(chicken);
-                        player.updateWallet("chicken", player);
+                        player.updateWalletAfterBuying("chicken", player);
                     }
                     break;
             }
         }
     }
+
     public void whatFoodToBuy(Player player) {
         while (true) {
             System.out.println("Choose what food you want to buy or type in \"-\" to finish your turn");
@@ -86,29 +89,30 @@ public class Store {
                     for (int i = 0; i < buyFoodAmount; i++) {
                         Beef beef = new Beef();
                         player.addFood(beef);
-                        player.updateWallet("beef", player);
+                        player.updateWalletAfterBuying("beef", player);
                     }
                     break;
                 case "corn":
                     for (int i = 0; i < buyFoodAmount; i++) {
                         Corn corn = new Corn();
                         player.addFood(corn);
-                        player.updateWallet("corn", player);
+                        player.updateWalletAfterBuying("corn", player);
                     }
                     break;
             }
         }
     }
-    public void sellAnimals(Player player){
-        while (true){
+
+    public void sellAnimals(Player player) {
+        while (true) {
             System.out.println("Type in the name of the animal you would like to sell. Or type in \"-\" to finish your turn");
             String animalName = scan.nextLine();
             Animal animalTemp = player.getAnimal(animalName);
             if (animalName.equals("-")) {
                 break;
             }
-            System.out.println(animalTemp.getName() + " was successfully sold for $" + animalTemp.animalWorthWhenSold(animalTemp.getTheAnimalType()) );
-            player.setmoney(player.getMoney() +  animalTemp.animalWorthWhenSold(animalTemp.getTheAnimalType()));
+            System.out.println(animalTemp.getName() + " was successfully sold for $" + animalTemp.animalWorthWhenSold(animalTemp.getTheAnimalType()));
+            player.setmoney(player.getMoney() + animalTemp.animalWorthWhenSold(animalTemp.getTheAnimalType()));
             player.removeAnimal(animalTemp);
 
         }

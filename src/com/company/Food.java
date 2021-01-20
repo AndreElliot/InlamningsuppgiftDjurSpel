@@ -1,6 +1,6 @@
 package com.company;
 
-enum FoodType{
+enum FoodType {
     MEAT,
     VEGETERIAN;
 }
@@ -9,8 +9,8 @@ enum FoodType{
 abstract class Food {
     protected FoodType foodType;
 
-    public Food(FoodType foodtype){
-        this.foodType=foodtype;
+    public Food(FoodType foodtype) {
+        this.foodType = foodtype;
 
     }
 

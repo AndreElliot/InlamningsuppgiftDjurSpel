@@ -107,9 +107,11 @@ public class Player {
         }
         return foodtype;
     }
-    public void updateWallet(String animalOrFood, Player player) {
+
+    public void updateWalletAfterBuying(String animalOrFood, Player player) {
         player.setmoney(player.getMoney() - store.getCostOfAnimalOrFood(animalOrFood));
     }
+
     public boolean checkIfPlayerHasEnoughMoney(String animalOrFood, int buyamount, Player player) {
         if (player.getMoney() < buyamount * store.getCostOfAnimalOrFood(animalOrFood)) {
             return true;
@@ -117,6 +119,7 @@ public class Player {
         return false;
 
     }
+
     public void feedAnimal(Player player) {
         while (true) {
             System.out.println("Choose what animal you want to feed by typing in the name of it. or type in \"-\" to finish your turn");

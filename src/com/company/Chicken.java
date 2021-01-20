@@ -8,7 +8,7 @@ public class Chicken extends Animal {
 
     @Override
     public void printOutValues() {
-        System.out.println("Chicken | Name: " + name + " | Gender:" + gender.toString().toLowerCase() +" | Health:" + health  + " | Last rounds health: " + healthLastRound + "(" +(health-healthLastRound) + ")");
+        System.out.println("Chicken | Name: " + name + " | Gender:" + gender.toString().toLowerCase() + " | Health:" + health + " | Last rounds health: " + healthLastRound + "(" + (health - healthLastRound) + ")");
 
     }
 
