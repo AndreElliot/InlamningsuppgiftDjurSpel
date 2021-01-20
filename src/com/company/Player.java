@@ -139,6 +139,7 @@ public class Player {
                         animaltemp.increaseHealthBy10();
                         removeFood(foodName);
                         System.out.println(animalName + " is eating his " + foodName + "... nam nam.. Health: " + animaltemp.health + "(+10)");
+
                     }
 
                 } else {
@@ -150,7 +151,37 @@ public class Player {
 
     }
 
+    public void breedAnimals(Player player) {
+
+        System.out.println("Type in the name of the first animal you want to try breed. or type in \"-\" to finish your turn.");
+        String animalName1 = scan.nextLine();
+        if (animalName1.equals("-")) { }
+        else{
+            System.out.println("Type in the name of the second animal you want to try breed.");
+            String animalName2 = scan.nextLine();
+            Animal animalTemp1 = player.getAnimal(animalName1);
+            Animal animalTemp2 = player.getAnimal(animalName2);
+            if(animalTemp1.getTheAnimalType().equalsIgnoreCase(animalTemp2.getTheAnimalType())){
+                if(animalTemp1.getGender() != animalTemp2.getGender()){
+
+                }
+                else
+
+
+
+            }
+            else{
+                System.out.println("Sorry, you can not breed 2 different species.");
+            }
+
+        }
+
+
+        System.out.println("Type in the name of the second animal you want to try breed");
+    }
+
 }
+
 
 
 

@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.Random;
 
+
 enum Gender {
     MALE,
     FEMALE
@@ -33,6 +34,10 @@ abstract class Animal {
 
     public void increaseHealthBy10() {
         this.health += 10;
+    }
+
+    public Gender getGender() {
+        return gender;
     }
 
     public int getHealthLastRound() {
