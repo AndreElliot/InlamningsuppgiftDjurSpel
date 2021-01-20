@@ -16,4 +16,9 @@ public class Chicken extends Animal {
     public FoodType getAnimalFoodType() {
         return FoodType.VEGETERIAN;
     }
+
+    @Override
+    public String getTheAnimalType() {
+        return "chicken";
+    }
 }

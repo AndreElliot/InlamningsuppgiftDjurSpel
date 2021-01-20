@@ -15,6 +15,7 @@ abstract class Animal {
     protected Gender gender;
     protected FoodType foodType;
     Random rand = new Random();
+    Store store = new Store();
 
     public Animal(String name, int health, String gender, FoodType foodType){
         this.name = name;
@@ -41,6 +42,14 @@ abstract class Animal {
         return name;
     }
 
+    public int getHealth(){
+        return health;
+    }
+    public int animalWorthWhenSold(String animalName){
+        return (store.getCostOfAnimalOrFood(animalName) * health/100);
+    }
+
+    public abstract String getTheAnimalType();
 
     public abstract void printOutValues();
 

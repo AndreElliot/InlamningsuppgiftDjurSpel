@@ -17,4 +17,10 @@ public class Tiger extends Animal {
     public FoodType getAnimalFoodType() {
         return FoodType.MEAT;
     }
+
+
+    @Override
+    public String getTheAnimalType() {
+        return "tiger";
+    }
 }

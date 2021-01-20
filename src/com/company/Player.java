@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Player {
 
@@ -10,6 +11,7 @@ public class Player {
     private String name;
     private int money;
     Store store = new Store();
+    Scanner scan = new Scanner(System.in);
 
     public Player(String name, int money) {
         this.name = name;
@@ -18,7 +20,7 @@ public class Player {
 
     public void setmoney(int money) {
         this.money = money;
-        System.out.println("Money left: " + money); //Will be deleted later.
+        System.out.println("Current money: $" + money); //Will be deleted later.
     }
 
     public int getMoney() {
@@ -30,7 +32,11 @@ public class Player {
 
     }
 
-    public void removeFood(String foodType) {  //not tested yet
+    public void removeAnimal(Animal animal) {
+        animalList.remove(animal);
+    }
+
+    public void removeFood(String foodType) {
 
         Food foodToRemove = null;
         for (Food food : foodList) {
@@ -77,7 +83,7 @@ public class Player {
                 CornCount++;
             }
         }
-            return CornCount;
+        return CornCount;
 
     }
 
@@ -91,15 +97,54 @@ public class Player {
         }
         return animal;
     }
-    public FoodType getFoodType(String foodName){
+
+    public FoodType getFoodType(String foodName) {
         FoodType foodtype = null;
-        for(Food allfood : foodList){
-            System.out.println(allfood.getFoodName());
-            if(allfood.getFoodName().equalsIgnoreCase(foodName)){
+        for (Food allfood : foodList) {
+            if (allfood.getFoodName().equalsIgnoreCase(foodName)) {
                 foodtype = allfood.getFoodType();
             }
         }
         return foodtype;
+    }
+    public void updateWallet(String animalOrFood, Player player) {
+        player.setmoney(player.getMoney() - store.getCostOfAnimalOrFood(animalOrFood));
+    }
+    public boolean checkIfPlayerHasEnoughMoney(String animalOrFood, int buyamount, Player player) {
+        if (player.getMoney() < buyamount * store.getCostOfAnimalOrFood(animalOrFood)) {
+            return true;
+        }
+        return false;
+
+    }
+    public void feedAnimal(Player player) {
+        while (true) {
+            System.out.println("Choose what animal you want to feed by typing in the name of it. or type in \"-\" to finish your turn");
+            String animalName = scan.nextLine();
+            Animal animaltemp = player.getAnimal(animalName);
+            if (animalName.equals("-")) {
+                break;
+            }
+            System.out.println("What type of food would you like to give the animal?");
+            String foodName = scan.nextLine();
+            if ((animaltemp.getAnimalFoodType()) == (player.getFoodType(foodName))) {
+                System.out.println("How many KG " + foodName + " would you like to give the animal (+10hp per kg)?");
+                int amountFoodToGive = scan.nextInt();
+                scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
+                if (amountFoodToGive <= player.howMuchFood(foodName)) {
+                    for (int i = 0; i < amountFoodToGive; i++) {
+                        animaltemp.increaseHealthBy10();
+                        removeFood(foodName);
+                        System.out.println(animalName + " is eating his " + foodName + "... nam nam.. Health: " + animaltemp.health + "(+10)");
+                    }
+
+                } else {
+                    System.out.println("You do not have enough " + foodName + " to feed your animal this much food.\n");
+                }
+
+            }
+        }
+
     }
 
 }

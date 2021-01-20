@@ -33,129 +33,24 @@ public class Game {
                 switch (menuChoice) {
                     case "1":
                         menu.animalMenu();
-                        whatAnimalToBuy(playerList.get(j));
+                        store.whatAnimalToBuy(playerList.get(j));
                         break;
                     case "2":
                         menu.foodMenu();
-                        whatFoodToBuy(playerList.get(j));
+                        store.whatFoodToBuy(playerList.get(j));
                         break;
                     case "3":
-                        feedAnimal(playerList.get(j));
+                        playerList.get(j).feedAnimal(playerList.get(j));
                         break;
+                    case "4":
+                        break;
+                    case "5":
+                        store.sellAnimals(playerList.get(j));
                 }
                 playerList.get(j).decraseAllAnimalsHealth();
 
             }
         }
-    }
-
-
-    public void whatAnimalToBuy(Player player) {
-
-        while (true) {
-            System.out.println("Choose the animal you want to buy or type in \"-\" to finish your turn");
-            String buyAnimalMenu = scan.nextLine().toLowerCase();
-            if (buyAnimalMenu.equals("-")) {
-                break;
-            }
-
-            System.out.println("How many animals would you like to buy?");
-            int buyAnimalAmount = scan.nextInt();
-            scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
-
-            if (checkIfPlayerHasEnoughMoney(buyAnimalMenu, buyAnimalAmount, player)) {
-                System.out.println("You dont have enough money for this. Redo you decisions and make sure you have enough money in the bank for it.");
-                continue;
-            }
-            switch (buyAnimalMenu) {
-                case "tiger":
-                    for (int i = 0; i < buyAnimalAmount; i++) {
-                        System.out.println("What Gender do you want to buy?");
-                        String gender = scan.nextLine();
-                        System.out.println("Give the animal a name:");
-                        String name = scan.nextLine();
-                        Tiger tiger = new Tiger(name, 100, gender);
-                        player.addAnimal(tiger);
-                        updateWallet("tiger", player);
-                    }
-                    break;
-                case "chicken":
-                    for (int i = 0; i < buyAnimalAmount; i++) {
-                        System.out.println("What Gender do you want to buy?");
-                        String gender = scan.nextLine();
-                        System.out.println("Give the animal a name:");
-                        String name = scan.nextLine();
-                        Chicken chicken = new Chicken(name, 100, gender);
-                        player.addAnimal(chicken);
-                        updateWallet("chicken", player);
-                    }
-                    break;
-            }
-        }
-    }
-
-    public void whatFoodToBuy(Player player) {
-        while (true) {
-            System.out.println("Choose what food you want to buy or type in \"-\" to finish your turn");
-            String buyFoodMenu = scan.nextLine().toLowerCase();
-            if (buyFoodMenu.equals("-")) {
-                break;
-            }
-            System.out.println("How many kg food would you like to buy?");
-            int buyFoodAmount = scan.nextInt();
-            scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
-
-            if (checkIfPlayerHasEnoughMoney(buyFoodMenu, buyFoodAmount, player)) {
-                System.out.println("You dont have enough money for this. Redo you decisions and make sure you have enough money in the bank for it.");
-                continue;
-            }
-            switch (buyFoodMenu) {
-                case "beef":
-                    for (int i = 0; i < buyFoodAmount; i++) {
-                        Beef beef = new Beef();
-                        player.addFood(beef);
-                        updateWallet("beef", player);
-                    }
-                    break;
-                case "corn":
-                    for (int i = 0; i < buyFoodAmount; i++) {
-                        Corn corn = new Corn();
-                        player.addFood(corn);
-                        updateWallet("corn", player);
-                    }
-                    break;
-            }
-        }
-    }
-
-    public void feedAnimal(Player player) {   //Not ready yet!
-        while (true) {
-            System.out.println("Choose what animal you want to feed by typing in the name of it. or type in \"-\" to finish your turn");
-            String animalName = scan.nextLine();
-            Animal animaltemp = player.getAnimal(animalName);
-            if (animalName.equals("-")) {
-                break;
-            }
-            System.out.println("What type of food would you like to give the animal?");
-            String foodName = scan.nextLine();
-            if ((animaltemp.getAnimalFoodType()) == (player.getFoodType(foodName))) {
-                System.out.println("How many KG " + foodName + " would you like to give the animal (+10hp per kg)?");
-                int amountFoodToGive = scan.nextInt();
-                scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
-                if (amountFoodToGive <= player.howMuchFood(foodName)) {
-                    for (int i = 0; i < amountFoodToGive; i++) {
-                        animaltemp.increaseHealthBy10();
-                        player.removeFood(foodName);
-                        System.out.println(animalName + " is eating his " + foodName + "... nam nam.. Health: " + animaltemp.health + "(+10)");
-                    }
-
-                } else {
-                    System.out.println("You do not have enough " + foodName + " to feed your animal this much food.\n");
-                }
-
-            }
-        }
-
     }
 
 
@@ -171,16 +66,5 @@ public class Game {
 
     }
 
-    public void updateWallet(String animalOrFood, Player player) {
-        player.setmoney(player.getMoney() - store.getCostOfAnimalOrFood(animalOrFood));
-    }
-
-    public boolean checkIfPlayerHasEnoughMoney(String animalOrFood, int buyamount, Player player) {
-        if (player.getMoney() < buyamount * store.getCostOfAnimalOrFood(animalOrFood)) {
-            return true;
-        }
-        return false;
-
-    }
 
 }
