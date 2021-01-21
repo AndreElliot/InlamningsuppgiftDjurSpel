@@ -14,6 +14,7 @@ public class Player {
     Store store = new Store();
     Scanner scan = new Scanner(System.in);
     Random rand = new Random();
+    Game game = new Game();
 
     public Player(String name, int money) {
         this.name = name;
@@ -155,10 +156,12 @@ public class Player {
 
     public void breedAnimals(Player player) {
 
-        System.out.println("Type in the name of the first animal you want to try breed. or type in \"-\" to finish your turn.");
-        String animalName1 = scan.nextLine();
-        if (animalName1.equals("-")) {
-        } else {
+        while (true) {
+            System.out.println("Type in the name of the first animal you want to try breed. or type in \"-\" to finish your turn.");
+            String animalName1 = scan.nextLine();
+            if (animalName1.equals("-")) {
+                break;
+            }
             System.out.println("Type in the name of the second animal you want to try breed.");
             String animalName2 = scan.nextLine();
             Animal animalTemp1 = player.getAnimal(animalName1);
@@ -167,12 +170,16 @@ public class Player {
             if (animalTemp1.getTheAnimalType().equalsIgnoreCase(animalTemp2.getTheAnimalType())) {
                 if (animalTemp1.getGender() != animalTemp2.getGender()) {
                     System.out.println("Attempting to make baby....");
-                    int randnumb = rand.nextInt(100);
-                    if (randnumb > 50) {
+                    int randnumb = rand.nextInt(2);
+                    if (randnumb == 1) {
 
                         animalTemp1.createNewBornAnimals(animalSpecie, player);
+                        finishTurnLoop();
+                        break;
                     } else {
                         System.out.println("Sorry, the animals did not manage to make babies..");
+                        finishTurnLoop();
+                        break;
                     }
 
                 } else {
@@ -184,8 +191,19 @@ public class Player {
             }
 
         }
+    }
 
 
+
+
+    public void finishTurnLoop() {
+        while (true) {
+            System.out.println("Press \"-\" to finish the turn.");
+            String finishturn = scan.nextLine();
+            if (finishturn.equals("-")) {
+                break;
+            }
+        }
     }
 
 }

@@ -35,8 +35,8 @@ abstract class Animal {
             System.out.println(i);
             System.out.println("numberofbabies: " + numberOfBabies);
             String gender = "female";
-            int randgender = rand.nextInt(10);
-            if (randgender >= 5) {
+            int randgender = rand.nextInt(2);
+            if (randgender == 1) {
                 gender = "male";
             }
             System.out.println("Its a " + gender + "!! What would you like to name it?");
