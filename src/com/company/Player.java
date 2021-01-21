@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Player {
 
@@ -12,6 +13,7 @@ public class Player {
     private int money;
     Store store = new Store();
     Scanner scan = new Scanner(System.in);
+    Random rand = new Random();
 
     public Player(String name, int money) {
         this.name = name;
@@ -155,29 +157,35 @@ public class Player {
 
         System.out.println("Type in the name of the first animal you want to try breed. or type in \"-\" to finish your turn.");
         String animalName1 = scan.nextLine();
-        if (animalName1.equals("-")) { }
-        else{
+        if (animalName1.equals("-")) {
+        } else {
             System.out.println("Type in the name of the second animal you want to try breed.");
             String animalName2 = scan.nextLine();
             Animal animalTemp1 = player.getAnimal(animalName1);
             Animal animalTemp2 = player.getAnimal(animalName2);
-            if(animalTemp1.getTheAnimalType().equalsIgnoreCase(animalTemp2.getTheAnimalType())){
-                if(animalTemp1.getGender() != animalTemp2.getGender()){
+            String animalSpecie = animalTemp2.getTheAnimalType();
+            if (animalTemp1.getTheAnimalType().equalsIgnoreCase(animalTemp2.getTheAnimalType())) {
+                if (animalTemp1.getGender() != animalTemp2.getGender()) {
+                    System.out.println("Attempting to make baby....");
+                    int randnumb = rand.nextInt(100);
+                    if (randnumb > 50) {
 
+                        animalTemp1.createNewBornAnimals(animalSpecie, player);
+                    } else {
+                        System.out.println("Sorry, the animals did not manage to make babies..");
+                    }
+
+                } else {
+                    System.out.println("Sorry, you can not breed 2 animals of the same sex.");
                 }
-                else
 
-
-
-            }
-            else{
+            } else {
                 System.out.println("Sorry, you can not breed 2 different species.");
             }
 
         }
 
 
-        System.out.println("Type in the name of the second animal you want to try breed");
     }
 
 }

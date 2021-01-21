@@ -43,9 +43,11 @@ public class Game {
                         playerList.get(j).feedAnimal(playerList.get(j));
                         break;
                     case "4":
+                        playerList.get(j).breedAnimals(playerList.get(j));
                         break;
                     case "5":
                         store.sellAnimals(playerList.get(j));
+                        break;
                 }
                 playerList.get(j).decraseAllAnimalsHealth();
 

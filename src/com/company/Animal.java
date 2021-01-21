@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.Random;
+import java.util.Scanner;
 
 
 enum Gender {
@@ -17,6 +18,7 @@ abstract class Animal {
     protected FoodType foodType;
     Random rand = new Random();
     Store store = new Store();
+    Scanner scan = new Scanner(System.in);
 
     public Animal(String name, int health, String gender, FoodType foodType) {
         this.name = name;
@@ -25,6 +27,33 @@ abstract class Animal {
         this.foodType = foodType;
 
     }
+
+    public void createNewBornAnimals(String animalspecie, Player player) {
+        int numberOfBabies = (1 + rand.nextInt(5));
+        System.out.println("Success!! " + numberOfBabies + " new born babies!!");
+        for (int i = 0; i < numberOfBabies; i++) {
+            System.out.println(i);
+            System.out.println("numberofbabies: " + numberOfBabies);
+            String gender = "female";
+            int randgender = rand.nextInt(10);
+            if (randgender >= 5) {
+                gender = "male";
+            }
+            System.out.println("Its a " + gender + "!! What would you like to name it?");
+            String name = scan.nextLine();
+            switch (animalspecie) {
+                case "tiger":
+                    Tiger tiger = new Tiger(name, 100, gender);
+                    player.addAnimal(tiger);
+                    break;
+                case "chicken":
+                    Chicken chicken = new Chicken(name, 100, gender);
+                    player.addAnimal(chicken);
+                    break;
+            }
+        }
+    }
+
 
     public void decreaseHealth() {
         int n = 10 + rand.nextInt(21);
