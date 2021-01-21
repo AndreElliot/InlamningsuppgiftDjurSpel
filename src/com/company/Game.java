@@ -26,6 +26,7 @@ public class Game {
         int rounds = scan.nextInt();
         scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
         for (int i = 0; i < rounds; i++) {
+            System.out.println("Round: " + (i+1));
             for (int j = 0; j < players; j++) {
                 showPlayerInventory(playerList.get(j));
                 menu.mainMenu();
@@ -50,6 +51,7 @@ public class Game {
                         break;
                 }
                 playerList.get(j).decraseAllAnimalsHealth();
+                System.out.println("\n".repeat(20));
 
             }
         }

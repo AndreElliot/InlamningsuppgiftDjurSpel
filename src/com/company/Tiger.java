@@ -10,7 +10,7 @@ public class Tiger extends Animal {
 
     @Override
     public void printOutValues() {
-        System.out.println("Tiger | Name: " + name + " | Gender:" + gender.toString().toLowerCase() + " | Health:" + health + " | Last rounds health: " + healthLastRound + "(" + (health - healthLastRound) + ")");
+        System.out.println("Tiger | Name: " + name + " | Gender:" + gender.toString().toLowerCase() + " | Health:" + health + "(" + (health - healthLastRound) + ")" +" | Last rounds health: " + healthLastRound);
     }
 
     @Override
