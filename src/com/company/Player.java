@@ -39,6 +39,10 @@ public class Player {
         animalList.remove(animal);
     }
 
+    public ArrayList<Animal> getAnimalList() {
+        return animalList;
+    }
+
     public void removeFood(String foodType) {
 
         Food foodToRemove = null;
@@ -141,7 +145,7 @@ public class Player {
                     for (int i = 0; i < amountFoodToGive; i++) {
                         animaltemp.increaseHealthBy10();
                         removeFood(foodName);
-                        System.out.println(animalName + " is eating his " + foodName + "... nam nam.. Health: " + animaltemp.health + "(+10)");
+                        System.out.println(animalName + " is eating the " + foodName + "... nam nam.. Health: " + animaltemp.health + "(+10)");
 
                     }
 
@@ -192,8 +196,6 @@ public class Player {
 
         }
     }
-
-
 
 
     public void finishTurnLoop() {

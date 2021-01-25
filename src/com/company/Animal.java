@@ -28,6 +28,15 @@ abstract class Animal {
 
     }
 
+    public void animalDiesOfLowHealth(Player player){ //test
+        for(int i = player.getAnimalList().size() - 1; i >= 0; i--){
+            if(player.getAnimalList().get(i).health < 1){
+                System.out.println("Bad news.." + player.getAnimalList().get(i).name + " died from hunger.. RIP ");
+               player.getAnimalList().remove(i);
+            }
+        }
+    }
+
     public void createNewBornAnimals(String animalspecie, Player player) {
         int numberOfBabies = (1 + rand.nextInt(5));
         System.out.println("Success!! " + numberOfBabies + " new born babies!!");
@@ -63,6 +72,9 @@ abstract class Animal {
 
     public void increaseHealthBy10() {
         this.health += 10;
+        if(this.health > 100){
+            this.health = 100;
+        }
     }
 
     public Gender getGender() {

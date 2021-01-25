@@ -12,11 +12,13 @@ public class Game {
     Scanner scan = new Scanner(System.in);
     Store store = new Store();
     Menu menu = new Menu();
+    Tiger tiger = new Tiger( "testanimal", 100, "female"); //test
 
 
     public void run() {
         System.out.println("How many people will be playing?(1-4)");
         int players = scan.nextInt();
+        scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
         for (int i = 1; i <= players; i++) {
             String name = ("player" + i);
             Player player = new Player(name, 3000);
@@ -29,6 +31,7 @@ public class Game {
             System.out.println("Round: " + (i+1));
             for (int j = 0; j < players; j++) {
                 showPlayerInventory(playerList.get(j));
+                tiger.animalDiesOfLowHealth(playerList.get(j)); //test
                 menu.mainMenu();
                 String menuChoice = scan.nextLine();
                 switch (menuChoice) {
@@ -67,6 +70,7 @@ public class Game {
         System.out.println("Corn: " + player.howMuchFood("corn") + "kg");
         System.out.println("------------------------------------------");
         player.animalsOwned();
+        System.out.println("\n");
 
     }
 
