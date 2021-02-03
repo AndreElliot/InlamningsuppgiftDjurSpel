@@ -117,6 +117,14 @@ public class Store {
 
         }
     }
+    public void sellAllAnimals(Player player) {
+        for (int i = player.getAnimalList().size() - 1; i >= 0; i--) {
+            Animal animalTemp = player.getAnimalList().get(i);
+            player.setmoney(player.getMoney() + animalTemp.animalWorthWhenSold(animalTemp.getTheAnimalType()));
+            player.getAnimalList().remove(i);
 
+        }
+        System.out.println(player.getMoney());
+    }
 }
 

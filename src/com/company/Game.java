@@ -12,7 +12,6 @@ public class Game {
     Scanner scan = new Scanner(System.in);
     Store store = new Store();
     Menu menu = new Menu();
-    Tiger tiger = new Tiger( "testanimal", 100, "female"); //test
 
 
     public void run() {
@@ -28,10 +27,10 @@ public class Game {
         int rounds = scan.nextInt();
         scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
         for (int i = 0; i < rounds; i++) {
-            System.out.println("Round: " + (i+1));
+            System.out.println("Round: " + (i + 1));
             for (int j = 0; j < players; j++) {
                 showPlayerInventory(playerList.get(j));
-                tiger.animalDiesOfLowHealth(playerList.get(j)); //test
+                playerList.get(j).killPlayersAnimalBelowOneHp(playerList.get(j)); //test
                 menu.mainMenu();
                 String menuChoice = scan.nextLine();
                 switch (menuChoice) {
@@ -58,8 +57,10 @@ public class Game {
 
             }
         }
+        for (int j = 0; j < players; j++) {
+            store.sellAllAnimals(playerList.get(j));
+        }
     }
-
 
     public void showPlayerInventory(Player player) {
         System.out.print("Player: " + player.getName());
@@ -72,8 +73,12 @@ public class Game {
         player.animalsOwned();
         System.out.println("\n");
 
+
+
+        }
+
     }
 
 
 
-}
+

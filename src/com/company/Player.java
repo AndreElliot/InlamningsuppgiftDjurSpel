@@ -23,7 +23,6 @@ public class Player {
 
     public void setmoney(int money) {
         this.money = money;
-        System.out.println("Current money: $" + money); //Will be deleted later.
     }
 
     public int getMoney() {
@@ -156,6 +155,15 @@ public class Player {
             }
         }
 
+    }
+
+    public void killPlayersAnimalBelowOneHp(Player player) {
+        for (int i = player.getAnimalList().size() - 1; i >= 0; i--) {
+            if (player.getAnimalList().get(i).health < 1) {
+                System.out.println("Bad news.." + player.getAnimalList().get(i).name + " died from hunger.. RIP ");
+                player.getAnimalList().remove(i);
+            }
+        }
     }
 
     public void breedAnimals(Player player) {

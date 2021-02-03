@@ -28,14 +28,8 @@ abstract class Animal {
 
     }
 
-    public void animalDiesOfLowHealth(Player player){ //test
-        for(int i = player.getAnimalList().size() - 1; i >= 0; i--){
-            if(player.getAnimalList().get(i).health < 1){
-                System.out.println("Bad news.." + player.getAnimalList().get(i).name + " died from hunger.. RIP ");
-               player.getAnimalList().remove(i);
-            }
-        }
-    }
+
+
 
     public void createNewBornAnimals(String animalspecie, Player player) {
         int numberOfBabies = (1 + rand.nextInt(5));
