@@ -16,8 +16,8 @@ public class Game {
 
     public void run() {
         System.out.println("How many people will be playing?(1-4)");
-        int players = scan.nextInt();
-        scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
+        int players = checkMenuChoice(1,4); //not READY
+
         for (int i = 1; i <= players; i++) {
             String name = ("player" + i);
             Player player = new Player(name, 3000);
@@ -28,7 +28,7 @@ public class Game {
         scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
         for (int i = 0; i < rounds; i++) {
             System.out.println("Round: " + (i + 1));
-            for (int j = 0; j < players; j++) {
+            for (int j = 0; j < playerList.size(); j++) {
                 showPlayerInventory(playerList.get(j));
                 playerList.get(j).killPlayersAnimalBelowOneHp(playerList.get(j)); //test
                 menu.mainMenu();
@@ -56,6 +56,7 @@ public class Game {
                 System.out.println("\n".repeat(20));
 
             }
+
         }
         for (int j = 0; j < players; j++) {
             store.sellAllAnimals(playerList.get(j));
@@ -76,6 +77,38 @@ public class Game {
 
 
         }
+
+        public static int checkMenuChoice(int lowestNumber, int highestNumber){ //not READY
+        Scanner scan = new Scanner(System.in);
+        int playersChoice = 0;
+
+        while (true) {
+            try{
+                playersChoice = Integer.parseInt(scan.nextLine());
+
+            }
+            catch (Exception exception) {
+
+            }
+            if(playersChoice < lowestNumber || playersChoice > highestNumber){
+                System.out.println("Invalid choice, please try again");
+            }
+            else return playersChoice;
+            System.out.println("hehe");
+            }
+
+        }
+    public static int convertInputToInt() { //not READY
+        Scanner scan = new Scanner(System.in);
+
+        while (true) {
+            try {
+                return Integer.parseInt(scan.nextLine());
+            } catch (Exception exception) {
+                System.out.println("Wrong character input, try again");
+            }
+        }
+    }
 
     }
 
