@@ -16,7 +16,7 @@ public class Game {
 
     public void run() {
         System.out.println("How many people will be playing?(1-4)");
-        int players = checkMenuChoice(1,4); //not READY
+        int players = playerIntMenuChoice(1, 4); //not READY
 
         for (int i = 1; i <= players; i++) {
             String name = ("player" + i);
@@ -56,11 +56,14 @@ public class Game {
                 System.out.println("\n".repeat(20));
 
             }
+            removePlayersWithoutMoneyAndAnimals();
+
 
         }
-        for (int j = 0; j < players; j++) {
-            store.sellAllAnimals(playerList.get(j));
+        for (int i = 0; i < playerList.size(); i++) {
+            store.sellAllAnimals(playerList.get(i));
         }
+        declareWinner();
     }
 
     public void showPlayerInventory(Player player) {
@@ -75,29 +78,50 @@ public class Game {
         System.out.println("\n");
 
 
+    }
+
+    public void removePlayersWithoutMoneyAndAnimals() {
+        for (int j = playerList.size() - 1; j >= 0; j--) {
+            if (playerList.get(j).getMoney() < 50 && playerList.get(j).getAnimalList().size() < 1) {
+                System.out.println(playerList.get(j).getName() + " dont have enough money to keep on playing and has been kicked out of the game. Press \"-\" to continue playing. ");
+                playerList.get(j).pressToContinueLoop();
+                playerList.remove(j);
+
+            }
 
         }
+    }
 
-        public static int checkMenuChoice(int lowestNumber, int highestNumber){ //not READY
+    public void declareWinner(){
+        Player tempWinner = playerList.get(0);
+        for(int i = 0; i < playerList.size() - 1; i++){
+            if(tempWinner.getMoney() < playerList.get(i + 1).getMoney()){
+                tempWinner = playerList.get(i + 1);
+            }
+        }
+        System.out.println("The Game is now finished.\n");
+        System.out.println("And the winner is..... " + tempWinner.getName() + " with " + tempWinner.getMoney() + "$. Thanks for playing.");
+    }
+
+    public static int playerIntMenuChoice(int lowestNumber, int highestNumber) { //not READY
         Scanner scan = new Scanner(System.in);
         int playersChoice = 0;
 
         while (true) {
-            try{
+            try {
                 playersChoice = Integer.parseInt(scan.nextLine());
 
-            }
-            catch (Exception exception) {
+            } catch (Exception exception) {
 
             }
-            if(playersChoice < lowestNumber || playersChoice > highestNumber){
+            if (playersChoice < lowestNumber || playersChoice > highestNumber) {
                 System.out.println("Invalid choice, please try again");
-            }
-            else return playersChoice;
+            } else return playersChoice;
             System.out.println("hehe");
-            }
-
         }
+
+    }
+
     public static int convertInputToInt() { //not READY
         Scanner scan = new Scanner(System.in);
 
@@ -110,7 +134,7 @@ public class Game {
         }
     }
 
-    }
+}
 
 
 

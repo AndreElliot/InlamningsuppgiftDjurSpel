@@ -186,11 +186,11 @@ public class Player {
                     if (randnumb == 1) {
 
                         animalTemp1.createNewBornAnimals(animalSpecie, player);
-                        finishTurnLoop();
+                        pressToContinueLoop();
                         break;
                     } else {
                         System.out.println("Sorry, the animals did not manage to make babies..");
-                        finishTurnLoop();
+                        pressToContinueLoop();
                         break;
                     }
 
@@ -206,9 +206,9 @@ public class Player {
     }
 
 
-    public void finishTurnLoop() {
+    public void pressToContinueLoop() {
         while (true) {
-            System.out.println("Press \"-\" to finish the turn.");
+            System.out.println("\nPress \"-\" to continue");
             String finishturn = scan.nextLine();
             if (finishturn.equals("-")) {
                 break;
