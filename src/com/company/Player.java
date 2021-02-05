@@ -15,6 +15,7 @@ public class Player {
     Scanner scan = new Scanner(System.in);
     Random rand = new Random();
     Game game = new Game();
+    GameTools gameTools = new GameTools();
 
     public Player(String name, int money) {
         this.name = name;
@@ -138,8 +139,7 @@ public class Player {
             String foodName = scan.nextLine();
             if ((animaltemp.getAnimalFoodType()) == (player.getFoodType(foodName))) {
                 System.out.println("How many KG " + foodName + " would you like to give the animal (+10hp per kg)?");
-                int amountFoodToGive = scan.nextInt();
-                scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
+                int amountFoodToGive = gameTools.userInputToInt();
                 if (amountFoodToGive <= player.howMuchFood(foodName)) {
                     for (int i = 0; i < amountFoodToGive; i++) {
                         animaltemp.increaseHealthBy10();
@@ -152,6 +152,9 @@ public class Player {
                     System.out.println("You do not have enough " + foodName + " to feed your animal this much food.\n");
                 }
 
+            }
+            else {
+                System.out.println("The animal does not like this foodtype.. Try feeding it something more appropriate");
             }
         }
 
@@ -186,11 +189,11 @@ public class Player {
                     if (randnumb == 1) {
 
                         animalTemp1.createNewBornAnimals(animalSpecie, player);
-                        pressToContinueLoop();
+                        gameTools.pressToContinueLoop();
                         break;
                     } else {
                         System.out.println("Sorry, the animals did not manage to make babies..");
-                        pressToContinueLoop();
+                        gameTools.pressToContinueLoop();
                         break;
                     }
 
@@ -206,15 +209,7 @@ public class Player {
     }
 
 
-    public void pressToContinueLoop() {
-        while (true) {
-            System.out.println("\nPress \"-\" to continue");
-            String finishturn = scan.nextLine();
-            if (finishturn.equals("-")) {
-                break;
-            }
-        }
-    }
+
 
 }
 

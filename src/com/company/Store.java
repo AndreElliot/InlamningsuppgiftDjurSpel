@@ -20,6 +20,7 @@ public class Store {
     }
 
     Scanner scan = new Scanner(System.in);
+    GameTools gameTools = new GameTools();
 
     public int getCostOfAnimalOrFood(String animal) {
         return animalAndFoodShop.valueOf(animal.toUpperCase()).p;
@@ -35,8 +36,7 @@ public class Store {
             }
 
             System.out.println("How many animals would you like to buy?");
-            int buyAnimalAmount = scan.nextInt();
-            scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
+            int buyAnimalAmount = gameTools.userInputToInt();
 
             if (player.checkIfPlayerHasEnoughMoney(buyAnimalMenu, buyAnimalAmount, player)) {
                 System.out.println("You dont have enough money for this. Redo you decisions and make sure you have enough money in the bank for it.");
@@ -77,8 +77,7 @@ public class Store {
                 break;
             }
             System.out.println("How many kg food would you like to buy?");
-            int buyFoodAmount = scan.nextInt();
-            scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
+            int buyFoodAmount = gameTools.userInputToInt();
 
             if (player.checkIfPlayerHasEnoughMoney(buyFoodMenu, buyFoodAmount, player)) {
                 System.out.println("You dont have enough money for this. Redo you decisions and make sure you have enough money in the bank for it.");

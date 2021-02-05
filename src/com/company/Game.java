@@ -12,11 +12,12 @@ public class Game {
     Scanner scan = new Scanner(System.in);
     Store store = new Store();
     Menu menu = new Menu();
+    GameTools gameTools = new GameTools();
 
 
     public void run() {
         System.out.println("How many people will be playing?(1-4)");
-        int players = playerIntMenuChoice(1, 4); //not READY
+        int players = gameTools.userNumberChoice(1, 4);
 
         for (int i = 1; i <= players; i++) {
             String name = ("player" + i);
@@ -24,11 +25,11 @@ public class Game {
             playerList.add(player);
         }
         System.out.println("How many rounds would you like to play?(5-30)");
-        int rounds = scan.nextInt();
-        scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
+        int rounds = gameTools.userNumberChoice(5, 30);
+        //scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
         for (int i = 0; i < rounds; i++) {
-            System.out.println("Round: " + (i + 1));
             for (int j = 0; j < playerList.size(); j++) {
+                System.out.println("Round: " + (i + 1));
                 showPlayerInventory(playerList.get(j));
                 playerList.get(j).killPlayersAnimalBelowOneHp(playerList.get(j)); //test
                 menu.mainMenu();
@@ -68,7 +69,7 @@ public class Game {
 
     public void showPlayerInventory(Player player) {
         System.out.print("Player: " + player.getName());
-        System.out.println("     |     Money: " + player.getMoney());
+        System.out.println("     |     Money: $" + player.getMoney());
         System.out.println("------------------------------------------");
         System.out.print("Food owned: ");
         System.out.println("Beef: " + player.howMuchFood("beef") + "kg");
@@ -84,7 +85,7 @@ public class Game {
         for (int j = playerList.size() - 1; j >= 0; j--) {
             if (playerList.get(j).getMoney() < 50 && playerList.get(j).getAnimalList().size() < 1) {
                 System.out.println(playerList.get(j).getName() + " dont have enough money to keep on playing and has been kicked out of the game. Press \"-\" to continue playing. ");
-                playerList.get(j).pressToContinueLoop();
+                gameTools.pressToContinueLoop();
                 playerList.remove(j);
 
             }
@@ -92,10 +93,10 @@ public class Game {
         }
     }
 
-    public void declareWinner(){
+    public void declareWinner() {
         Player tempWinner = playerList.get(0);
-        for(int i = 0; i < playerList.size() - 1; i++){
-            if(tempWinner.getMoney() < playerList.get(i + 1).getMoney()){
+        for (int i = 0; i < playerList.size() - 1; i++) {
+            if (tempWinner.getMoney() < playerList.get(i + 1).getMoney()) {
                 tempWinner = playerList.get(i + 1);
             }
         }
@@ -103,36 +104,6 @@ public class Game {
         System.out.println("And the winner is..... " + tempWinner.getName() + " with " + tempWinner.getMoney() + "$. Thanks for playing.");
     }
 
-    public static int playerIntMenuChoice(int lowestNumber, int highestNumber) { //not READY
-        Scanner scan = new Scanner(System.in);
-        int playersChoice = 0;
-
-        while (true) {
-            try {
-                playersChoice = Integer.parseInt(scan.nextLine());
-
-            } catch (Exception exception) {
-
-            }
-            if (playersChoice < lowestNumber || playersChoice > highestNumber) {
-                System.out.println("Invalid choice, please try again");
-            } else return playersChoice;
-            System.out.println("hehe");
-        }
-
-    }
-
-    public static int convertInputToInt() { //not READY
-        Scanner scan = new Scanner(System.in);
-
-        while (true) {
-            try {
-                return Integer.parseInt(scan.nextLine());
-            } catch (Exception exception) {
-                System.out.println("Wrong character input, try again");
-            }
-        }
-    }
 
 }
 
