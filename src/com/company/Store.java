@@ -5,9 +5,14 @@ import java.util.Scanner;
 
 public class Store {
     enum animalAndFoodShop {
+        LION(750),
         TIGER(500),
-        CHICKEN(100),
+        HORSE(350),
+        COW(300),
+        CHICKEN(50),
+
         BEEF(50),
+        HAY(50),
         CORN(50);
 
 
@@ -43,6 +48,17 @@ public class Store {
                 continue;
             }
             switch (buyAnimalMenu) {
+                case "lion":
+                    for (int i = 0; i < buyAnimalAmount; i++) {
+                        System.out.println("What Gender do you want to buy?");
+                        String gender = scan.nextLine();
+                        System.out.println("Give the animal a name:");
+                        String name = scan.nextLine();
+                        Lion lion = new Lion(name, 100, gender);
+                        player.addAnimal(lion);
+                        player.updateWalletAfterBuying("lion", player);
+                    }
+                    break;
                 case "tiger":
                     for (int i = 0; i < buyAnimalAmount; i++) {
                         System.out.println("What Gender do you want to buy?");
@@ -52,6 +68,28 @@ public class Store {
                         Tiger tiger = new Tiger(name, 100, gender);
                         player.addAnimal(tiger);
                         player.updateWalletAfterBuying("tiger", player);
+                    }
+                    break;
+                case "horse":
+                    for (int i = 0; i < buyAnimalAmount; i++) {
+                        System.out.println("What Gender do you want to buy?");
+                        String gender = scan.nextLine();
+                        System.out.println("Give the animal a name:");
+                        String name = scan.nextLine();
+                        Horse horse = new Horse(name, 100, gender);
+                        player.addAnimal(horse);
+                        player.updateWalletAfterBuying("horse", player);
+                    }
+                    break;
+                case "cow":
+                    for (int i = 0; i < buyAnimalAmount; i++) {
+                        System.out.println("What Gender do you want to buy?");
+                        String gender = scan.nextLine();
+                        System.out.println("Give the animal a name:");
+                        String name = scan.nextLine();
+                        Cow cow = new Cow(name, 100, gender);
+                        player.addAnimal(cow);
+                        player.updateWalletAfterBuying("cow", player);
                     }
                     break;
                 case "chicken":
@@ -91,6 +129,13 @@ public class Store {
                         player.updateWalletAfterBuying("beef", player);
                     }
                     break;
+                case "hay":
+                    for (int i = 0; i < buyFoodAmount; i++) {
+                        Hay hay = new Hay();
+                        player.addFood(hay);
+                        player.updateWalletAfterBuying("hay", player);
+                    }
+                    break;
                 case "corn":
                     for (int i = 0; i < buyFoodAmount; i++) {
                         Corn corn = new Corn();
@@ -116,6 +161,7 @@ public class Store {
 
         }
     }
+
     public void sellAllAnimals(Player player) {
         for (int i = player.getAnimalList().size() - 1; i >= 0; i--) {
             Animal animalTemp = player.getAnimalList().get(i);

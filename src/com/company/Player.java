@@ -84,13 +84,13 @@ public class Player {
 
 
     public int howMuchFood(String foodToCheck) {
-        int CornCount = 0;
+        int foodCount = 0;
         for (Food food : foodList) {
             if (food.getFoodName().equalsIgnoreCase(foodToCheck)) {
-                CornCount++;
+                foodCount++;
             }
         }
-        return CornCount;
+        return foodCount;
 
     }
 
@@ -137,7 +137,7 @@ public class Player {
             }
             System.out.println("What type of food would you like to give the animal?");
             String foodName = scan.nextLine();
-            if ((animaltemp.getAnimalFoodType()) == (player.getFoodType(foodName))) {
+            if ((animaltemp.getAnimalFoodType()) == (getFoodType(foodName))) {
                 System.out.println("How many KG " + foodName + " would you like to give the animal (+10hp per kg)?");
                 int amountFoodToGive = gameTools.userInputToInt();
                 if (amountFoodToGive <= player.howMuchFood(foodName)) {
@@ -149,15 +149,18 @@ public class Player {
                     }
 
                 } else {
-                    System.out.println("You do not have enough " + foodName + " to feed your animal this much food.\n");
+                    System.out.println("You do not have enough " + foodName + " to feed your animal this much food.\n"); gameTools.newLine();
                 }
 
+            } else {
+                if (getFoodType(foodName) == null) {
+                    System.out.println("You do not have any of this food avaible."); gameTools.newLine();
+                } else {
+                    System.out.println("The animal does not like this foodtype.. Try feeding it something more appropriate"); gameTools.newLine();
+                }
             }
-            else {
-                System.out.println("The animal does not like this foodtype.. Try feeding it something more appropriate");
-            }
-        }
 
+        }
     }
 
     public void killPlayersAnimalBelowOneHp(Player player) {

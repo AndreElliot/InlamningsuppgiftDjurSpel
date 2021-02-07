@@ -54,7 +54,7 @@ public class Game {
                         break;
                 }
                 playerList.get(j).decraseAllAnimalsHealth();
-                System.out.println("\n".repeat(20));
+                gameTools.clear();
 
             }
             removePlayersWithoutMoneyAndAnimals();
@@ -71,12 +71,13 @@ public class Game {
         System.out.print("Player: " + player.getName());
         System.out.println("     |     Money: $" + player.getMoney());
         System.out.println("------------------------------------------");
-        System.out.print("Food owned: ");
+        System.out.println("Food owned: ");
         System.out.println("Beef: " + player.howMuchFood("beef") + "kg");
         System.out.println("Corn: " + player.howMuchFood("corn") + "kg");
+        System.out.println("Hay: " + player.howMuchFood("hay") + "kg");
         System.out.println("------------------------------------------");
         player.animalsOwned();
-        System.out.println("\n");
+        gameTools.newLine();
 
 
     }
