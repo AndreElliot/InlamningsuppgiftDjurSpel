@@ -35,7 +35,7 @@ public class Store {
 
         while (true) {
             System.out.println("Choose the animal you want to buy or type in \"-\" to finish your turn");
-            String buyAnimalMenu = scan.nextLine().toLowerCase();
+            String buyAnimalMenu = gameTools.userAnimalToBuy();
             if (buyAnimalMenu.equals("-")) {
                 break;
             }

@@ -41,6 +41,22 @@ public class GameTools {
             }
         }
     }
+    public String userAnimalToBuy(){   //not working yet
+        Scanner scan = new Scanner(System.in);
+        String playersChoice = scan.nextLine();
+
+        while (!(playersChoice.equals("lion") || playersChoice.equals("tiger") || playersChoice.equals("horse") || playersChoice.equals("cow") || playersChoice.equals("chicken") || playersChoice.equals("-"))){
+            System.out.println("invalid input, please try again.");
+            playersChoice = scan.nextLine();
+
+
+
+        }
+        return playersChoice;
+        }
+
+
+
 
     public void pressToContinueLoop() {
         Scanner scan = new Scanner(System.in);
@@ -52,6 +68,23 @@ public class GameTools {
                 break;
             }
         }
+    }
+    public String NumberChoice() { //not READY
+        Scanner scan = new Scanner(System.in);
+        String playersChoice = "";
+
+        while (true) {
+            try {
+                playersChoice = scan.nextLine();
+
+            } catch (Exception exception) {
+
+            }
+            if (!(playersChoice.equals("lion") || playersChoice.equals("tiger") || playersChoice.equals("horse") || playersChoice.equals("cow") || playersChoice.equals("chicken"))) {
+                System.out.println("Invalid choice, please try again");
+            } else return playersChoice;
+        }
+
     }
 
 
