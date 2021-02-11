@@ -17,7 +17,7 @@ public class Game {
 
     public void run() {
         System.out.println("How many people will be playing?(1-4)");
-        int players = gameTools.userNumberChoice(1, 4);
+        players = gameTools.userNumberChoice(1, 4);
 
         for (int i = 1; i <= players; i++) {
             String name = ("player" + i);
@@ -25,7 +25,7 @@ public class Game {
             playerList.add(player);
         }
         System.out.println("How many rounds would you like to play?(5-30)");
-        int rounds = gameTools.userNumberChoice(5, 30);
+        rounds = gameTools.userNumberChoice(5, 30);
         for (int i = 0; i < rounds; i++) {
             for (int j = 0; j < playerList.size(); j++) {
                 gameTools.clear();
@@ -53,6 +53,7 @@ public class Game {
                         store.sellAnimals(playerList.get(j));
                         break;
                     case "6":
+                    case "-":
                         break;
                 }
                 playerList.get(j).decraseAllAnimalsHealth();
@@ -86,12 +87,29 @@ public class Game {
     public void removePlayersWithoutMoneyAndAnimals() {
         for (int j = playerList.size() - 1; j >= 0; j--) {
             if (playerList.get(j).getMoney() < 50 && playerList.get(j).getAnimalList().size() < 1) {
+                gameTools.clear();
                 System.out.println(playerList.get(j).getName() + " dont have enough money to keep on playing and has been kicked out of the game.");
                 gameTools.pressToContinueLoop();
                 playerList.remove(j);
 
             }
 
+        }
+
+         if(playerList.size() == 1 && players > 1){
+             gameTools.clear();
+            System.out.println(playerList.get(0).getName() + " has won the game since there are no other players remaining. Thanks for playing.");
+            System.exit(0);
+        }
+         else if(playerList.size() < 1 && players == 1){
+             gameTools.clear();
+             System.out.println("GAME OVER");
+             System.exit(0);
+         }
+        else if(playerList.size() < 1){
+            gameTools.clear();
+            System.out.println("There are no more players remaining.. Nobody finished the game.. Therefore nobody won.. GAME OVER");
+            System.exit(0);
         }
     }
 
@@ -102,6 +120,7 @@ public class Game {
                 tempWinner = playerList.get(i + 1);
             }
         }
+        gameTools.clear();
         System.out.println("The Game is now finished.\n");
         System.out.println("And the winner is..... " + tempWinner.getName() + " with " + tempWinner.getMoney() + "$. Thanks for playing.");
     }

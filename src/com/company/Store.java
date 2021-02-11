@@ -34,7 +34,7 @@ public class Store {
     public void whatAnimalToBuy(Player player) {
 
         while (true) {
-            System.out.println("Choose the animal you want to buy or type in \"-\" to finish your turn");
+            System.out.println("Type in the animal you want to buy or type in \"-\" to finish your turn");
             String buyAnimalMenu = gameTools.userAnimalToBuy();
             if (buyAnimalMenu.equals("-")) {
                 break;
@@ -50,7 +50,7 @@ public class Store {
             switch (buyAnimalMenu) {
                 case "lion":
                     for (int i = 0; i < buyAnimalAmount; i++) {
-                        System.out.println("What Gender do you want to buy?");
+                        System.out.println("Type in what Gender you want to buy? (Female or Male)");
                         String gender = gameTools.userChooseGender();
                         System.out.println("Give the animal a name:");
                         String name = scan.nextLine();
@@ -61,7 +61,7 @@ public class Store {
                     break;
                 case "tiger":
                     for (int i = 0; i < buyAnimalAmount; i++) {
-                        System.out.println("What Gender do you want to buy?");
+                        System.out.println("Type in what Gender you want to buy? (Female or Male)");
                         String gender = gameTools.userChooseGender();
                         System.out.println("Give the animal a name:");
                         String name = scan.nextLine();
@@ -72,7 +72,7 @@ public class Store {
                     break;
                 case "horse":
                     for (int i = 0; i < buyAnimalAmount; i++) {
-                        System.out.println("What Gender do you want to buy?");
+                        System.out.println("Type in what Gender you want to buy? (Female or Male)");
                         String gender = gameTools.userChooseGender();
                         System.out.println("Give the animal a name:");
                         String name = scan.nextLine();
@@ -83,7 +83,7 @@ public class Store {
                     break;
                 case "cow":
                     for (int i = 0; i < buyAnimalAmount; i++) {
-                        System.out.println("What Gender do you want to buy?");
+                        System.out.println("Type in what Gender you want to buy? (Female or Male)");
                         String gender = gameTools.userChooseGender();
                         System.out.println("Give the animal a name:");
                         String name = scan.nextLine();
@@ -94,7 +94,7 @@ public class Store {
                     break;
                 case "chicken":
                     for (int i = 0; i < buyAnimalAmount; i++) {
-                        System.out.println("What Gender do you want to buy?");
+                        System.out.println("Type in what Gender you want to buy? (Female or Male)");
                         String gender = gameTools.userChooseGender();
                         System.out.println("Give the animal a name:");
                         String name = scan.nextLine();
@@ -109,7 +109,7 @@ public class Store {
 
     public void whatFoodToBuy(Player player) {
         while (true) {
-            System.out.println("Choose what food you want to buy or type in \"-\" to finish your turn");
+            System.out.println("Type in what food you want to buy or type in \"-\" to finish your turn");
             String buyFoodMenu = gameTools.userChooseFood();
             if (buyFoodMenu.equals("-")) {
                 break;

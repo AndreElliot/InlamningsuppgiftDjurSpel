@@ -107,7 +107,8 @@ public class GameTools {
         Scanner scan = new Scanner(System.in);
         String playersChoice = scan.nextLine();
 
-        while (!(playersChoice.equals("1") || playersChoice.equals("2") || playersChoice.equals("3") || playersChoice.equals("4") || playersChoice.equals("5") || playersChoice.equals("6"))) {
+        while (!(playersChoice.equals("1") || playersChoice.equals("2") || playersChoice.equals("3") || playersChoice.equals("4")
+                || playersChoice.equals("5") || playersChoice.equals("6") || playersChoice.equals("-"))) {
             System.out.println("invalid input, try again.");
             playersChoice = scan.nextLine();
         }
