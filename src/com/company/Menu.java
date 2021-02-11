@@ -9,6 +9,7 @@ public class Menu {
         System.out.println("3. Feed your animals");
         System.out.println("4. Mate your animals");
         System.out.println("5. Sell your animals");
+        System.out.println("6. Skip turn");
     }
     public void animalMenu(){
         System.out.println("----------- Animals for sale -----------");

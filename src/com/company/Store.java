@@ -44,14 +44,14 @@ public class Store {
             int buyAnimalAmount = gameTools.userInputToInt();
 
             if (player.checkIfPlayerHasEnoughMoney(buyAnimalMenu, buyAnimalAmount, player)) {
-                System.out.println("You dont have enough money for this. Redo you decisions and make sure you have enough money in the bank for it.");
+                System.out.println("You do not have enough money for this. Redo you decisions and make sure you have enough money for it.");
                 continue;
             }
             switch (buyAnimalMenu) {
                 case "lion":
                     for (int i = 0; i < buyAnimalAmount; i++) {
                         System.out.println("What Gender do you want to buy?");
-                        String gender = scan.nextLine();
+                        String gender = gameTools.userChooseGender();
                         System.out.println("Give the animal a name:");
                         String name = scan.nextLine();
                         Lion lion = new Lion(name, 100, gender);
@@ -62,7 +62,7 @@ public class Store {
                 case "tiger":
                     for (int i = 0; i < buyAnimalAmount; i++) {
                         System.out.println("What Gender do you want to buy?");
-                        String gender = scan.nextLine();
+                        String gender = gameTools.userChooseGender();
                         System.out.println("Give the animal a name:");
                         String name = scan.nextLine();
                         Tiger tiger = new Tiger(name, 100, gender);
@@ -73,7 +73,7 @@ public class Store {
                 case "horse":
                     for (int i = 0; i < buyAnimalAmount; i++) {
                         System.out.println("What Gender do you want to buy?");
-                        String gender = scan.nextLine();
+                        String gender = gameTools.userChooseGender();
                         System.out.println("Give the animal a name:");
                         String name = scan.nextLine();
                         Horse horse = new Horse(name, 100, gender);
@@ -84,7 +84,7 @@ public class Store {
                 case "cow":
                     for (int i = 0; i < buyAnimalAmount; i++) {
                         System.out.println("What Gender do you want to buy?");
-                        String gender = scan.nextLine();
+                        String gender = gameTools.userChooseGender();
                         System.out.println("Give the animal a name:");
                         String name = scan.nextLine();
                         Cow cow = new Cow(name, 100, gender);
@@ -95,7 +95,7 @@ public class Store {
                 case "chicken":
                     for (int i = 0; i < buyAnimalAmount; i++) {
                         System.out.println("What Gender do you want to buy?");
-                        String gender = scan.nextLine();
+                        String gender = gameTools.userChooseGender();
                         System.out.println("Give the animal a name:");
                         String name = scan.nextLine();
                         Chicken chicken = new Chicken(name, 100, gender);
@@ -110,7 +110,7 @@ public class Store {
     public void whatFoodToBuy(Player player) {
         while (true) {
             System.out.println("Choose what food you want to buy or type in \"-\" to finish your turn");
-            String buyFoodMenu = scan.nextLine().toLowerCase();
+            String buyFoodMenu = gameTools.userChooseFood();
             if (buyFoodMenu.equals("-")) {
                 break;
             }
@@ -150,9 +150,8 @@ public class Store {
     public void sellAnimals(Player player) {
         while (true) {
             System.out.println("Type in the name of the animal you would like to sell. Or type in \"-\" to finish your turn");
-            String animalName = scan.nextLine();
-            Animal animalTemp = player.getAnimal(animalName);
-            if (animalName.equals("-")) {
+            Animal animalTemp = player.userChooseAnimal();
+            if (animalTemp == null) {
                 break;
             }
             System.out.println(animalTemp.getName() + " was successfully sold for $" + animalTemp.animalWorthWhenSold(animalTemp.getTheAnimalType()));
@@ -169,7 +168,6 @@ public class Store {
             player.getAnimalList().remove(i);
 
         }
-        System.out.println(player.getMoney());
     }
 }
 

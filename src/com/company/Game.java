@@ -26,14 +26,14 @@ public class Game {
         }
         System.out.println("How many rounds would you like to play?(5-30)");
         int rounds = gameTools.userNumberChoice(5, 30);
-        //scan.nextLine(); //scan.nextint() reads an extra character into the buffer, in order to whipe the buffer, puts in an extra line that reads it.
         for (int i = 0; i < rounds; i++) {
             for (int j = 0; j < playerList.size(); j++) {
-                System.out.println("Round: " + (i + 1));
+                gameTools.clear();
+                System.out.println("Round: " + (i + 1) + " (out of " + rounds + ")");
                 showPlayerInventory(playerList.get(j));
                 playerList.get(j).killPlayersAnimalBelowOneHp(playerList.get(j)); //test
                 menu.mainMenu();
-                String menuChoice = scan.nextLine();
+                String menuChoice = gameTools.userMainMenuChoice();
                 switch (menuChoice) {
                     case "1":
                         menu.animalMenu();
@@ -52,13 +52,14 @@ public class Game {
                     case "5":
                         store.sellAnimals(playerList.get(j));
                         break;
+                    case "6":
+                        break;
                 }
                 playerList.get(j).decraseAllAnimalsHealth();
-                gameTools.clear();
 
             }
             removePlayersWithoutMoneyAndAnimals();
-
+            gameTools.clear();
 
         }
         for (int i = 0; i < playerList.size(); i++) {
@@ -85,7 +86,7 @@ public class Game {
     public void removePlayersWithoutMoneyAndAnimals() {
         for (int j = playerList.size() - 1; j >= 0; j--) {
             if (playerList.get(j).getMoney() < 50 && playerList.get(j).getAnimalList().size() < 1) {
-                System.out.println(playerList.get(j).getName() + " dont have enough money to keep on playing and has been kicked out of the game. Press \"-\" to continue playing. ");
+                System.out.println(playerList.get(j).getName() + " dont have enough money to keep on playing and has been kicked out of the game.");
                 gameTools.pressToContinueLoop();
                 playerList.remove(j);
 

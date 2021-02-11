@@ -35,19 +35,30 @@ abstract class Animal {
         int numberOfBabies = (1 + rand.nextInt(5));
         System.out.println("Success!! " + numberOfBabies + " new born babies!!");
         for (int i = 0; i < numberOfBabies; i++) {
-            System.out.println(i);
-            System.out.println("numberofbabies: " + numberOfBabies);
             String gender = "female";
             int randgender = rand.nextInt(2);
             if (randgender == 1) {
                 gender = "male";
             }
+            System.out.println("pulling out baby nr: " + (i+1) + "...");
             System.out.println("Its a " + gender + "!! What would you like to name it?");
             String name = scan.nextLine();
             switch (animalspecie) {
+                case "lion":
+                    Lion lion = new Lion(name, 100, gender);
+                    player.addAnimal(lion);
+                    break;
                 case "tiger":
                     Tiger tiger = new Tiger(name, 100, gender);
                     player.addAnimal(tiger);
+                    break;
+                case "horse":
+                    Horse horse = new Horse(name, 100, gender);
+                    player.addAnimal(horse);
+                    break;
+                case "cow":
+                    Cow cow = new Cow(name, 100, gender);
+                    player.addAnimal(cow);
                     break;
                 case "chicken":
                     Chicken chicken = new Chicken(name, 100, gender);

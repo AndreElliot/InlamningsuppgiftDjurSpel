@@ -94,16 +94,29 @@ public class Player {
 
     }
 
-    public Animal getAnimal(String animalName) {
-        Animal animal = null;
-        for (Animal everyAnimal : animalList) {
-            if (everyAnimal.getName().equalsIgnoreCase(animalName)) {
-                animal = everyAnimal;
 
+    public Animal userChooseAnimal() {
+        Scanner scan = new Scanner(System.in);
+        String animalName = "";
+        Animal animal = null;
+        while (animal == null && (!animalName.equals("-"))) {
+            animalName = scan.nextLine();
+            for (Animal everyAnimal : getAnimalList()) {
+                if (everyAnimal.getName().equalsIgnoreCase(animalName)) {
+                    animal = everyAnimal;
+
+
+                }
             }
+            if (animal == null && !animalName.equals("-")) {
+                System.out.println("You dont have a animal named: " + animalName + ". Try typing in the name of the animal again.");
+            }
+
+
         }
         return animal;
     }
+
 
     public FoodType getFoodType(String foodName) {
         FoodType foodtype = null;
@@ -130,33 +143,39 @@ public class Player {
     public void feedAnimal(Player player) {
         while (true) {
             System.out.println("Choose what animal you want to feed by typing in the name of it. or type in \"-\" to finish your turn");
-            String animalName = scan.nextLine();
-            Animal animaltemp = player.getAnimal(animalName);
-            if (animalName.equals("-")) {
+
+            Animal animalTemp = player.userChooseAnimal();
+            if (animalTemp == null) {
                 break;
             }
-            System.out.println("What type of food would you like to give the animal?");
-            String foodName = scan.nextLine();
-            if ((animaltemp.getAnimalFoodType()) == (getFoodType(foodName))) {
+            System.out.println("Type in the food you want to give the animal. or type in \"-\" to finish your turn.");
+            String foodName = gameTools.userChooseFood();
+            if (foodName.equals("-")) {
+                break;
+            }
+            if ((animalTemp.getAnimalFoodType()) == (getFoodType(foodName))) {
                 System.out.println("How many KG " + foodName + " would you like to give the animal (+10hp per kg)?");
                 int amountFoodToGive = gameTools.userInputToInt();
                 if (amountFoodToGive <= player.howMuchFood(foodName)) {
                     for (int i = 0; i < amountFoodToGive; i++) {
-                        animaltemp.increaseHealthBy10();
+                        animalTemp.increaseHealthBy10();
                         removeFood(foodName);
-                        System.out.println(animalName + " is eating the " + foodName + "... nam nam.. Health: " + animaltemp.health + "(+10)");
+                        System.out.println(animalTemp.getName() + " is eating the " + foodName + "... nam nam.. Health: " + animalTemp.health + "(+10)");
 
                     }
 
                 } else {
-                    System.out.println("You do not have enough " + foodName + " to feed your animal this much food.\n"); gameTools.newLine();
+                    System.out.println("You do not have enough " + foodName + " to feed your animal this much food.\n");
+                    gameTools.newLine();
                 }
 
             } else {
                 if (getFoodType(foodName) == null) {
-                    System.out.println("You do not have any of this food avaible."); gameTools.newLine();
+                    System.out.println("You do not have any of this food avaible.");
+                    gameTools.newLine();
                 } else {
-                    System.out.println("The animal does not like this foodtype.. Try feeding it something more appropriate"); gameTools.newLine();
+                    System.out.println("The animal does not like this foodtype.. Try feeding it something more appropriate");
+                    gameTools.newLine();
                 }
             }
 
@@ -176,14 +195,15 @@ public class Player {
 
         while (true) {
             System.out.println("Type in the name of the first animal you want to try breed. or type in \"-\" to finish your turn.");
-            String animalName1 = scan.nextLine();
-            if (animalName1.equals("-")) {
+            Animal animalTemp1 = player.userChooseAnimal();
+            if (animalTemp1 == null) {
                 break;
             }
-            System.out.println("Type in the name of the second animal you want to try breed.");
-            String animalName2 = scan.nextLine();
-            Animal animalTemp1 = player.getAnimal(animalName1);
-            Animal animalTemp2 = player.getAnimal(animalName2);
+            System.out.println("Type in the name of the second animal you want to try breed. or type in \"-\" to finish your turn.");
+            Animal animalTemp2 = player.userChooseAnimal();
+            if (animalTemp2 == null) {
+                break;
+            }
             String animalSpecie = animalTemp2.getTheAnimalType();
             if (animalTemp1.getTheAnimalType().equalsIgnoreCase(animalTemp2.getTheAnimalType())) {
                 if (animalTemp1.getGender() != animalTemp2.getGender()) {
@@ -210,8 +230,6 @@ public class Player {
 
         }
     }
-
-
 
 
 }
