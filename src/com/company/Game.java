@@ -31,7 +31,7 @@ public class Game {
                 gameTools.clear();
                 System.out.println("Round: " + (i + 1) + " (out of " + rounds + ")");
                 showPlayerInventory(playerList.get(j));
-                playerList.get(j).killPlayersAnimalBelowOneHp(playerList.get(j)); //test
+                playerList.get(j).killPlayersAnimal(playerList.get(j));
                 menu.mainMenu();
                 String menuChoice = gameTools.userMainMenuChoice();
                 switch (menuChoice) {
@@ -56,7 +56,7 @@ public class Game {
                     case "-":
                         break;
                 }
-                playerList.get(j).decraseAllAnimalsHealth();
+                playerList.get(j).decraseHealthAndAddAgeAllAnimals();
 
             }
             removePlayersWithoutMoneyAndAnimals();

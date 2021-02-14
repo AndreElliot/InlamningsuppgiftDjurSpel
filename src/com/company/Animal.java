@@ -16,6 +16,7 @@ abstract class Animal {
     protected int healthLastRound;
     protected Gender gender;
     protected FoodType foodType;
+    protected int age = 0;
     Random rand = new Random();
     Store store = new Store();
     Scanner scan = new Scanner(System.in);
@@ -29,8 +30,6 @@ abstract class Animal {
     }
 
 
-
-
     public void createNewBornAnimals(String animalspecie, Player player) {
         int numberOfBabies = (1 + rand.nextInt(5));
         System.out.println("Success!! " + numberOfBabies + " new born babies!!");
@@ -40,7 +39,7 @@ abstract class Animal {
             if (randgender == 1) {
                 gender = "male";
             }
-            System.out.println("pulling out baby nr: " + (i+1) + "...");
+            System.out.println("pulling out baby nr: " + (i + 1) + "...");
             System.out.println("Its a " + gender + "!! What would you like to name it?");
             String name = scan.nextLine();
             switch (animalspecie) {
@@ -77,29 +76,26 @@ abstract class Animal {
 
     public void increaseHealthBy10() {
         this.health += 10;
-        if(this.health > 100){
+        if (this.health > 100) {
             this.health = 100;
         }
+    }
+
+    public void increaseAgeBy1() {
+        this.age += 1;
     }
 
     public Gender getGender() {
         return gender;
     }
 
-    public int getHealthLastRound() {
-        return healthLastRound;
-    }
 
     public String getName() {
         return name;
     }
 
-    public int getHealth() {
-        return health;
-    }
-
     public int animalWorthWhenSold(String animalName) {
-        return (store.getCostOfAnimalOrFood(animalName) * health / 100);
+        return (((store.getCostOfAnimalOrFood(animalName) * health) - (store.getCostOfAnimalOrFood(animalName) * 2 * age)) / 100);
     }
 
     public abstract String getTheAnimalType();

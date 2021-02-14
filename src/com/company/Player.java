@@ -76,9 +76,10 @@ public class Player {
         }
     }
 
-    public void decraseAllAnimalsHealth() {
+    public void decraseHealthAndAddAgeAllAnimals() {
         for (Animal animal : animalList) {
             animal.decreaseHealth();
+            animal.increaseAgeBy1();
         }
     }
 
@@ -182,9 +183,13 @@ public class Player {
         }
     }
 
-    public void killPlayersAnimalBelowOneHp(Player player) {
+    public void killPlayersAnimal(Player player) {
         for (int i = player.getAnimalList().size() - 1; i >= 0; i--) {
-            if (player.getAnimalList().get(i).health < 1) {
+            if (player.getAnimalList().get(i).age > 20) {
+                System.out.println("Bad news.." + player.getAnimalList().get(i).name + " died from old age.. RIP ");
+                player.getAnimalList().remove(i);
+            }
+            else if (player.getAnimalList().get(i).health < 1) {
                 System.out.println("Bad news.." + player.getAnimalList().get(i).name + " died from hunger.. RIP ");
                 player.getAnimalList().remove(i);
             }

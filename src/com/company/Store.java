@@ -155,6 +155,7 @@ public class Store {
                 break;
             }
             System.out.println(animalTemp.getName() + " was successfully sold for $" + animalTemp.animalWorthWhenSold(animalTemp.getTheAnimalType()));
+            gameTools.newLine();
             player.setmoney(player.getMoney() + animalTemp.animalWorthWhenSold(animalTemp.getTheAnimalType()));
             player.removeAnimal(animalTemp);
 
