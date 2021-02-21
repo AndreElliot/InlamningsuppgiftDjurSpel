@@ -8,7 +8,7 @@ public class Cow extends Animal {
 
     @Override
     public void printOutValues() {
-        if(health > 0 && age <= 20)
+        if (health > 0 && age <= 20)
             System.out.println("Cow | Name: " + name + " | Age:" + age + " out of 20(max age)" + " | Gender:" + gender.toString().toLowerCase() + " | Health:" + health + "(" + (health - healthLastRound) + ")" + " | Last rounds health: " + healthLastRound);
 
     }

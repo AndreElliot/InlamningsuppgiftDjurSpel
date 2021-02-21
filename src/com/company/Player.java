@@ -188,8 +188,7 @@ public class Player {
             if (player.getAnimalList().get(i).age > 20) {
                 System.out.println("Bad news.." + player.getAnimalList().get(i).name + " died from old age.. RIP ");
                 player.getAnimalList().remove(i);
-            }
-            else if (player.getAnimalList().get(i).health < 1) {
+            } else if (player.getAnimalList().get(i).health < 1) {
                 System.out.println("Bad news.." + player.getAnimalList().get(i).name + " died from hunger.. RIP ");
                 player.getAnimalList().remove(i);
             }

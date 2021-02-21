@@ -2,7 +2,7 @@ package com.company;
 
 public class Menu {
 
-    public void mainMenu(){
+    public void mainMenu() {
         System.out.println();
         System.out.println("1. Buy Animals");
         System.out.println("2. Buy food");
@@ -12,7 +12,8 @@ public class Menu {
         System.out.println("6. Press - to skip turn");
 
     }
-    public void animalMenu(){
+
+    public void animalMenu() {
         System.out.println("----------- Animals for sale -----------");
         System.out.println("         Lion    |   $750 (each)");
         System.out.println("         Tiger   |   $500 (each)");
@@ -20,7 +21,8 @@ public class Menu {
         System.out.println("         Cow     |   $300 (each)");
         System.out.println("         Chicken |   $50 (each)");
     }
-    public void foodMenu(){
+
+    public void foodMenu() {
         System.out.println("------------ Food for sale ------------");
         System.out.println("         Beef   |   $50 (price per kg)");
         System.out.println("         Hay    |   $50 (price per kg)");

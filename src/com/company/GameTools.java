@@ -81,27 +81,6 @@ public class GameTools {
         }
         return playersChoice;
     }
-    public Animal userChooseAnimal(Player player) {
-        Scanner scan = new Scanner(System.in);
-        String animalName = "";
-        Animal animal = null;
-        while (animal == null && (!animalName.equals("-"))) {
-            animalName = scan.nextLine();
-            for (Animal everyAnimal : player.getAnimalList()) {
-                if (everyAnimal.getName().equalsIgnoreCase(animalName)) {
-                    animal = everyAnimal;
-
-
-                }
-            }
-            if (animal == null && !animalName.equals("-")){
-                System.out.println("You dont have a animal named: " + animalName + ". Try typing in the name of the animal again.");
-            }
-
-
-        }
-        return animal;
-    }
 
     public String userMainMenuChoice() {
         Scanner scan = new Scanner(System.in);
