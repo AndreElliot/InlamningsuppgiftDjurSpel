@@ -9,7 +9,7 @@ public class Game {
     int players;
     private ArrayList<Player> playerList = new ArrayList<>();
 
-    Scanner scan = new Scanner(System.in);
+
     Store store = new Store();
     Menu menu = new Menu();
     GameTools gameTools = new GameTools();

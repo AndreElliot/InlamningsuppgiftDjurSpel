@@ -12,9 +12,7 @@ public class Player {
     private String name;
     private int money;
     Store store = new Store();
-    Scanner scan = new Scanner(System.in);
     Random rand = new Random();
-    Game game = new Game();
     GameTools gameTools = new GameTools();
 
     public Player(String name, int money) {
